@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हिंदी व्याकरण प्रश्नोत्तरी - EMRS एक्सप्रेस बैच</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #2a5298;
+            margin-bottom: 15px;
+        }
+        
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .timer {
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .quiz-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .question-number {
+            font-size: 1.2rem;
+            color: #2a5298;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #1e3c72;
+            line-height: 1.4;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option.selected {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            background: #1e3c72;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        
+        .result-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        
+        .wrong-questions {
+            margin-top: 20px;
+        }
+        
+        .wrong-question {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-left: 5px solid #dc3545;
+        }
+        
+        .announcement {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        .announcement-title {
+            font-size: 1.8rem;
+            color: #b8860b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .announcement-content {
+            text-align: left;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #2a5298;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .social-link:hover {
+            background: #1e3c72;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .screenshot-btn {
+            background: #28a745;
+            margin-top: 15px;
+        }
+        
+        .screenshot-btn:hover {
+            background: #218838;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+            
+            .announcement-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏆 हिंदी व्याकरण प्रश्नोत्तरी 🏆</h1>
+            <p class="subtitle">संधि, समास, विलोम शब्द, पर्यायवाची शब्द, सामान्य अशुद्धियाँ, वाक्यांशों के लिए एक शब्द, मुहावरे-लोकोक्तियाँ, अपठित गद्यांश</p>
+            <div class="timer-container">
+                <div class="timer" id="timer">30</div>
+            </div>
+        </header>
+        
+        <div class="announcement">
+            <h2 class="announcement-title">🏆 EMRS PRLIMS 50 DAYS EXPRESS BATCH ANNOUNCEMENT 🏆</h2>
+            <div class="announcement-content">
+                <p><strong>EMRS प्रीलिम्स 50 दिन एक्सप्रेस बैच की घोषणा</strong></p>
+                <p><strong>प्यारे EMRS उम्मीदवारों,</strong></p>
+                <p>हम EMRS प्रीलिम्स 2024 के लिए विशेष <span class="highlight">एक्सप्रेस बैच</span> लॉन्च कर रहे हैं। यह बैच आपको सिर्फ 50 दिनों में <span class="highlight">70+ अंक</span> स्कोर करने में मदद करेगा!</p>
+                <p><strong>🎯 बैच की मुख्य विशेषताएं:</strong></p>
+                <ul>
+                    <li>सभी विषयों का व्यापक कवरेज</li>
+                    <li>डेली प्रैक्टिस के साथ तुरंत समाधान</li>
+                    <li>पिछले वर्षों के CTET प्रश्नों का विश्लेषण</li>
+                    <li>समय-बद्ध तैयारी रणनीति</li>
+                </ul>
+                <p><strong>💰 विशेष लॉन्च ऑफर:</strong> सिर्फ ₹99</p>
+                <p><strong>👥 सीमित:</strong> पहले 100 छात्रों के लिए</p>
+            </div>
+            <div class="social-links">
+                <a href="https://allteachingexamprep.github.io/80ctQuiz/" class="social-link">डेमो लिंक</a>
+                <a href="https://t.me/LtGradeGS2025" class="social-link">टेलीग्राम जॉइन करें</a>
+            </div>
+        </div>
+        
+        <div class="quiz-section" id="quiz-section">
+            <div class="question-number" id="question-number">प्रश्न 1/10</div>
+            <div class="question-text" id="question-text">'सदाचार' शब्द में कौन-सी संधि है?</div>
+            <div class="options" id="options">
+                <div class="option" data-correct="false">(क) दीर्घ संधि</div>
+                <div class="option" data-correct="true">(ख) व्यंजन संधि </div>
+                <div class="option" data-correct="false">(ग) यण संधि</div>
+                <div class="option" data-correct="false">(घ) वृद्धि संधि</div>
+            </div>
+            <div class="navigation">
+                <button id="prev-btn" disabled>पिछला प्रश्न</button>
+                <button id="next-btn">अगला प्रश्न</button>
+            </div>
+        </div>
+        
+        <div class="result-section" id="result-section">
+            <h2 class="result-title">आपका परिणाम</h2>
+            <div class="score" id="score">आपने 7/10 प्रश्न सही किए!</div>
+            <div class="wrong-questions" id="wrong-questions">
+                <h3>गलत उत्तर वाले प्रश्न:</h3>
+                <!-- Wrong questions will be inserted here by JavaScript -->
+            </div>
+            <div class="social-links">
+                <button class="social-link screenshot-btn" id="screenshot-btn">स्क्रीनशॉट लें</button>
+                <a href="#" class="social-link" id="restart-btn">फिर से प्रयास करें</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions data
+        const questions = [
+            {
+                question: "'सदाचार' शब्द में कौन-सी संधि है?",
+                options: [
+                    { text: "(क) दीर्घ संधि", correct: false },
+                    { text: "(ख) व्यंजन संधि ", correct: true },
+                    { text: "(ग) यण संधि", correct: false },
+                    { text: "(घ) वृद्धि संधि", correct: false }
+                ]
+            },
+            {
+                question: "'पीताम्बर' शब्द में कौन-सा समास है?",
+                options: [
+                    { text: "(क) तत्पुरुष समास", correct: false },
+                    { text: "(ख) द्विगु समास", correct: false },
+                    { text: "(ग) बहुव्रीहि समास", correct: true },
+                    { text: "(घ) कर्मधारय समास", correct: false }
+                ]
+            },
+            {
+                question: "'निरपराध' का सही विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) दोषी", correct: false },
+                    { text: "(ख) अपराधी", correct: false },
+                    { text: "(ग) सदोष", correct: false },
+                    { text: "(घ) उपरोक्त सभी", correct: true }
+                ]
+            },
+            {
+                question: "'इंद्र' का पर्यायवाची शब्द नहीं है:",
+                options: [
+                    { text: "(क) सुरपति", correct: false },
+                    { text: "(ख) अमरेश", correct: false },
+                    { text: "(ग) वज्रधारी", correct: false },
+                    { text: "(घ) त्रिनेत्र", correct: true }
+                ]
+            },
+            {
+                question: "निम्नलिखित में से किस वाक्य में 'सामान्य अशुद्धि' नहीं है?",
+                options: [
+                    { text: "(क) मैं कल आगरा जाऊँगा।", correct: false },
+                    { text: "(ख) उसने मुझे एक फल दिया।", correct: true },
+                    { text: "(ग) श्याम का भाई आया है।", correct: false },
+                    { text: "(घ) वह पढ़ता है।", correct: false }
+                ]
+            },
+            {
+                question: "'जो कभी न मरता हो' - वाक्यांश के लिए एक शब्द क्या होगा?",
+                options: [
+                    { text: "(क) मृत्युंजय", correct: false },
+                    { text: "(ख) अमर", correct: false },
+                    { text: "(ग) चिरंजीव", correct: false },
+                    { text: "(घ) उपरोक्त सभी", correct: true }
+                ]
+            },
+            {
+                question: "'आग में घी डालना' मुहावरे का सही अर्थ क्या है?",
+                options: [
+                    { text: "(क) आग बुझाना", correct: false },
+                    { text: "(ख) क्रोध बढ़ाना", correct: true },
+                    { text: "(ग) खाना बनाना", correct: false },
+                    { text: "(घ) बलिदान देना", correct: false }
+                ]
+            },
+            {
+                question: "'नाचना' किस लोकोक्ति से संबंधित है?",
+                options: [
+                    { text: "(क) जैसी करनी वैसी भरनी", correct: false },
+                    { text: "(ख) अंधों में काना राजा", correct: false },
+                    { text: "(ग) नाच न जाने आँगन टेढ़ा", correct: true },
+                    { text: "(घ) नौ नचोड़े तेरह चोदे", correct: false }
+                ]
+            },
+            {
+                question: "अपठित गद्यांश में 'अन्वय' से क्या तात्पर्य है?",
+                options: [
+                    { text: "(क) गद्यांश का सारांश", correct: false },
+                    { text: "(ख) गद्यांश का शीर्षक", correct: false },
+                    { text: "(ग) गद्यांश की व्याख्या", correct: false },
+                    { text: "(घ) वाक्यों का क्रमबद्ध अर्थ", correct: true }
+                ]
+            },
+            {
+                question: "'अनुरूप' शब्द का सही संधि-विच्छेद क्या है?",
+                options: [
+                    { text: "(क) अनु + रूप", correct: true },
+                    { text: "(ख) अनुर + उप", correct: false },
+                    { text: "(ग) अनु + उप", correct: false },
+                    { text: "(घ) अन + उरूप", correct: false }
+                ]
+            }
+        ];
+
+        // DOM elements
+        const quizSection = document.getElementById('quiz-section');
+        const resultSection = document.getElementById('result-section');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const scoreElement = document.getElementById('score');
+        const wrongQuestionsContainer = document.getElementById('wrong-questions');
+        const timerElement = document.getElementById('timer');
+        const screenshotBtn = document.getElementById('screenshot-btn');
+        const restartBtn = document.getElementById('restart-btn');
+
+        // Quiz state
+        let currentQuestion = 0;
+        let userAnswers = new Array(questions.length).fill(null);
+        let score = 0;
+        let timer;
+        let timeLeft = 30;
+
+        // Initialize quiz
+        function initQuiz() {
+            showQuestion();
+            startTimer();
+        }
+
+        // Show current question
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            questionNumber.textContent = `प्रश्न ${currentQuestion + 1}/${questions.length}`;
+            questionText.textContent = question.question;
+            
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.textContent = option.text;
+                optionElement.dataset.correct = option.correct;
+                
+                // Check if user has already selected this option
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                    if (option.correct) {
+                        optionElement.classList.add('correct');
+                    } else {
+                        optionElement.classList.add('incorrect');
+                    }
+                }
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.textContent = currentQuestion === questions.length - 1 ? 'परिणाम देखें' : 'अगला प्रश्न';
+            
+            // Reset timer for new question
+            resetTimer();
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            // Mark the selected option
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected', 'correct', 'incorrect'));
+            
+            const selectedOption = options[optionIndex];
+            selectedOption.classList.add('selected');
+            
+            // Check if the answer is correct
+            const isCorrect = questions[currentQuestion].options[optionIndex].correct;
+            if (isCorrect) {
+                selectedOption.classList.add('correct');
+            } else {
+                selectedOption.classList.add('incorrect');
+                
+                // Highlight the correct answer
+                options.forEach(option => {
+                    if (option.dataset.correct === 'true') {
+                        option.classList.add('correct');
+                    }
+                });
+            }
+            
+            // Store user's answer
+            userAnswers[currentQuestion] = optionIndex;
+            
+            // Automatically move to next question after a delay
+            clearTimeout(timer);
+            setTimeout(() => {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1500);
+        }
+
+        // Navigation
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResult();
+            }
+        });
+
+        // Timer functions
+        function startTimer() {
+            resetTimer();
+            timer = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    // Auto move to next question when time runs out
+                    if (currentQuestion < questions.length - 1) {
+                        currentQuestion++;
+                        showQuestion();
+                    } else {
+                        showResult();
+                    }
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            timeLeft = 30;
+            timerElement.textContent = timeLeft;
+            startTimer();
+        }
+
+        // Show result
+        function showResult() {
+            clearInterval(timer);
+            quizSection.style.display = 'none';
+            resultSection.style.display = 'block';
+            
+            // Calculate score
+            score = 0;
+            const wrongQuestions = [];
+            
+            userAnswers.forEach((answer, index) => {
+                if (answer !== null && questions[index].options[answer].correct) {
+                    score++;
+                } else {
+                    wrongQuestions.push({
+                        question: questions[index].question,
+                        userAnswer: answer !== null ? questions[index].options[answer].text : 'कोई उत्तर नहीं',
+                        correctAnswer: questions[index].options.find(option => option.correct).text
+                    });
+                }
+            });
+            
+            // Display score
+            scoreElement.textContent = `आपने ${score}/${questions.length} प्रश्न सही किए!`;
+            
+            // Display wrong questions
+            if (wrongQuestions.length > 0) {
+                wrongQuestionsContainer.innerHTML = '<h3>गलत उत्तर वाले प्रश्न:</h3>';
+                wrongQuestions.forEach((item, index) => {
+                    const wrongQuestionElement = document.createElement('div');
+                    wrongQuestionElement.classList.add('wrong-question');
+                    wrongQuestionElement.innerHTML = `
+                        <p><strong>प्रश्न ${index + 1}:</strong> ${item.question}</p>
+                        <p><strong>आपका उत्तर:</strong> ${item.userAnswer}</p>
+                        <p><strong>सही उत्तर:</strong> ${item.correctAnswer}</p>
+                    `;
+                    wrongQuestionsContainer.appendChild(wrongQuestionElement);
+                });
+            } else {
+                wrongQuestionsContainer.innerHTML = '<p>आपने सभी प्रश्न सही किए! बधाई हो! 🎉</p>';
+            }
+        }
+
+        // Screenshot functionality
+        screenshotBtn.addEventListener('click', () => {
+            alert('अपने डिवाइस के स्क्रीनशॉट फ़ंक्शन का उपयोग करें (जैसे Windows में Win+Shift+S या Mac में Cmd+Shift+4)। इस पेज का स्क्रीनशॉट लें ताकि आप बाद में गलत प्रश्नों की समीक्षा कर सकें।');
+        });
+
+        // Restart quiz
+        restartBtn.addEventListener('click', () => {
+            currentQuestion = 0;
+            userAnswers = new Array(questions.length).fill(null);
+            score = 0;
+            quizSection.style.display = 'block';
+            resultSection.style.display = 'none';
+            initQuiz();
+        });
+
+        // Initialize the quiz
+        initQuiz();
+    </script>
+</body>
+</html>
