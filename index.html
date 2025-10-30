@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>हिंदी व्याकरण प्रश्नोत्तरी - EMRS एक्सप्रेस बैच</title>
+    <title>हिंदी व्याकरण प्रश्नोत्तरी - मध्यवर्ती स्तर</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Nirmala UI', 'Mangal', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
             color: #333;
             line-height: 1.6;
             min-height: 100vh;
@@ -24,139 +24,269 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             margin: 0 auto;
         }
         
         header {
             text-align: center;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             width: 100%;
+            position: relative;
+            border: 3px solid #1a2980;
+        }
+        
+        .creator {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 1rem;
+            color: #1a2980;
+            font-weight: bold;
+            background: #e3f2fd;
+            padding: 5px 15px;
+            border-radius: 20px;
         }
         
         h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1a2980;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
         .subtitle {
-            font-size: 1.2rem;
-            color: #2a5298;
+            font-size: 1.3rem;
+            color: #26d0ce;
             margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .level-badge {
+            background: linear-gradient(45deg, #FF512F, #F09819);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .topics {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .topic-tag {
+            background: #e3f2fd;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #1a2980;
+            border: 2px solid #bbdefb;
+            font-weight: 500;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #e0e0e0;
+            border-radius: 15px;
+            margin: 20px 0;
+            height: 25px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            border-radius: 15px;
+            transition: width 0.4s ease;
+            width: 0%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
+            background-size: 20px 20px;
+            animation: move 1s linear infinite;
+        }
+        
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 0; }
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         
         .timer-container {
             display: flex;
             justify-content: center;
-            margin: 15px 0;
+            margin: 20px 0;
         }
         
         .timer {
-            background: #ff6b6b;
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid white;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         .quiz-section {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 3px solid #26d0ce;
+            transition: transform 0.3s ease;
+        }
+        
+        .quiz-section:hover {
+            transform: translateY(-5px);
         }
         
         .question-number {
-            font-size: 1.2rem;
-            color: #2a5298;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: #1a2980;
+            margin-bottom: 15px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .question-number::before {
+            content: '❓';
+            font-size: 1.5rem;
         }
         
         .question-text {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
             font-weight: 600;
-            color: #1e3c72;
-            line-height: 1.4;
+            color: #1a2980;
+            line-height: 1.5;
+            text-align: justify;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #26d0ce;
         }
         
         .options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
         
         .option {
-            padding: 15px 20px;
+            padding: 18px 25px;
             background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
+            border: 3px solid #e9ecef;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
         .option:hover {
             background: #e9ecef;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .option.selected {
             background: #d4edda;
             border-color: #28a745;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
         }
         
         .option.correct {
             background: #d4edda;
             border-color: #28a745;
             color: #155724;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
         }
         
         .option.incorrect {
             background: #f8d7da;
             border-color: #dc3545;
             color: #721c24;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.2);
         }
         
         .navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         button {
-            padding: 12px 25px;
-            background: #2a5298;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #1a2980, #26d0ce);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         button:hover {
-            background: #1e3c72;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         
         button:disabled {
@@ -168,123 +298,194 @@
         
         .result-section {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             display: none;
+            border: 3px solid #FF416C;
+            text-align: center;
         }
         
         .result-title {
             text-align: center;
-            font-size: 2rem;
-            color: #1e3c72;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #1a2980;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
         
         .score {
             text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+            font-weight: bold;
+            color: #1a2980;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .performance {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .performance-item {
             background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 150px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .performance-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a2980;
+        }
+        
+        .performance-label {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 5px;
         }
         
         .wrong-questions {
-            margin-top: 20px;
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 15px;
         }
         
         .wrong-question {
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            background: white;
             border-left: 5px solid #dc3545;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         
         .announcement {
             background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
+            border: 3px solid #b8860b;
         }
         
         .announcement-title {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #b8860b;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
         }
         
         .announcement-content {
-            text-align: left;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            text-align: right;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 1.1rem;
         }
         
         .highlight {
             background: rgba(255, 255, 255, 0.7);
-            padding: 2px 6px;
-            border-radius: 4px;
+            padding: 3px 8px;
+            border-radius: 5px;
             font-weight: bold;
+            color: #b8860b;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
         
         .social-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #2a5298;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #1a2980, #26d0ce);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             transition: all 0.3s ease;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .social-link:hover {
-            background: #1e3c72;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         
         .screenshot-btn {
-            background: #28a745;
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
             margin-top: 15px;
         }
         
         .screenshot-btn:hover {
-            background: #218838;
+            background: linear-gradient(45deg, #45a049, #7cb342);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         
         @media (max-width: 768px) {
             h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .question-text {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
             
             .option {
-                padding: 12px 15px;
-                font-size: 1rem;
+                padding: 15px 20px;
+                font-size: 1.1rem;
             }
             
             .announcement-title {
-                font-size: 1.5rem;
+                font-size: 1.7rem;
+            }
+            
+            .creator {
+                position: static;
+                margin-top: 15px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                justify-content: center;
             }
         }
     </style>
@@ -292,155 +493,981 @@
 <body>
     <div class="container">
         <header>
+            <div class="creator">Created by Anurag</div>
             <h1>🏆 हिंदी व्याकरण प्रश्नोत्तरी 🏆</h1>
-            <p class="subtitle">संधि, समास, विलोम शब्द, पर्यायवाची शब्द, सामान्य अशुद्धियाँ, वाक्यांशों के लिए एक शब्द, मुहावरे-लोकोक्तियाँ, अपठित गद्यांश</p>
+            <p class="subtitle">मध्यवर्ती स्तर - 100 प्रश्न</p>
+            <div class="level-badge">मध्यवर्ती स्तर (Intermediate Level)</div>
+            <div class="topics">
+                <span class="topic-tag">संधि</span>
+                <span class="topic-tag">समास</span>
+                <span class="topic-tag">विलोम शब्द</span>
+                <span class="topic-tag">पर्यायवाची</span>
+                <span class="topic-tag">अशुद्धि शोधन</span>
+                <span class="topic-tag">वाक्यांश के लिए एक शब्द</span>
+                <span class="topic-tag">मुहावरे</span>
+                <span class="topic-tag">लोकोक्तियाँ</span>
+                <span class="topic-tag">अपठित गद्यांश</span>
+                <span class="topic-tag">वाच्य</span>
+            </div>
+            <div class="progress-text" id="progress-text">प्रश्न 1 का 100</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
             <div class="timer-container">
                 <div class="timer" id="timer">30</div>
             </div>
         </header>
         
         <div class="announcement">
-            <h2 class="announcement-title">🏆 EMRS PRLIMS 50 DAYS EXPRESS BATCH ANNOUNCEMENT 🏆</h2>
+            <h2 class="announcement-title">🏆 EMRS प्रीलिम्स 50 दिन एक्सप्रेस बैच 🏆</h2>
             <div class="announcement-content">
-                <p><strong>EMRS प्रीलिम्स 50 दिन एक्सप्रेस बैच की घोषणा</strong></p>
-                <p><strong>प्यारे EMRS उम्मीदवारों,</strong></p>
-                <p>हम EMRS प्रीलिम्स 2024 के लिए विशेष <span class="highlight">एक्सप्रेस बैच</span> लॉन्च कर रहे हैं। यह बैच आपको सिर्फ 50 दिनों में <span class="highlight">70+ अंक</span> स्कोर करने में मदद करेगा!</p>
-                <p><strong>🎯 बैच की मुख्य विशेषताएं:</strong></p>
+                <p><strong>विशेष घोषणा: EMRS प्रीलिम्स 50 दिन एक्सप्रेस बैच</strong></p>
+                <p><strong>प्रिय EMRS उम्मीदवारों,</strong></p>
+                <p>हम आपके लिए लेकर आए हैं विशेष <span class="highlight">एक्सप्रेस बैच</span> जो आपको मात्र 50 दिनों में <span class="highlight">70+ अंक</span> दिलाने में सहायक होगा!</p>
+                <p><strong>🎯 बैच की प्रमुख विशेषताएँ:</strong></p>
                 <ul>
-                    <li>सभी विषयों का व्यापक कवरेज</li>
-                    <li>डेली प्रैक्टिस के साथ तुरंत समाधान</li>
-                    <li>पिछले वर्षों के CTET प्रश्नों का विश्लेषण</li>
-                    <li>समय-बद्ध तैयारी रणनीति</li>
+                    <li>सभी विषयों का सम्पूर्ण कवरेज</li>
+                    <li>दैनिक अभ्यास सामग्री</li>
+                    <li>पिछले वर्षों के प्रश्नों का विस्तृत विश्लेषण</li>
+                    <li>समय प्रबंधन रणनीति</li>
                 </ul>
-                <p><strong>💰 विशेष लॉन्च ऑफर:</strong> सिर्फ ₹99</p>
-                <p><strong>👥 सीमित:</strong> पहले 100 छात्रों के लिए</p>
+                <p><strong>💰 विशेष ऑफर:</strong> केवल ₹99</p>
+                <p><strong>👥 सीमित सीटें:</strong> प्रथम 100 छात्रों के लिए</p>
             </div>
             <div class="social-links">
-                <a href="https://allteachingexamprep.github.io/80ctQuiz/" class="social-link">डेमो लिंक</a>
-                <a href="https://t.me/LtGradeGS2025" class="social-link">टेलीग्राम जॉइन करें</a>
+                <a href="https://allteachingexamprep.github.io/80ctQuiz/" class="social-link">📱 डेमो लिंक</a>
+                <a href="https://t.me/LtGradeGS2025" class="social-link">📞 टेलीग्राम जॉइन करें</a>
             </div>
         </div>
         
         <div class="quiz-section" id="quiz-section">
-            <div class="question-number" id="question-number">प्रश्न 1/10</div>
-            <div class="question-text" id="question-text">'सदाचार' शब्द में कौन-सी संधि है?</div>
+            <div class="question-number" id="question-number">प्रश्न 1/100</div>
+            <div class="question-text" id="question-text">'अत्याधुनिक' शब्द में किस प्रकार की संधि है?</div>
             <div class="options" id="options">
                 <div class="option" data-correct="false">(क) दीर्घ संधि</div>
-                <div class="option" data-correct="true">(ख) व्यंजन संधि </div>
-                <div class="option" data-correct="false">(ग) यण संधि</div>
+                <div class="option" data-correct="false">(ख) गुण संधि</div>
+                <div class="option" data-correct="true">(ग) यण संधि</div>
                 <div class="option" data-correct="false">(घ) वृद्धि संधि</div>
             </div>
             <div class="navigation">
-                <button id="prev-btn" disabled>पिछला प्रश्न</button>
-                <button id="next-btn">अगला प्रश्न</button>
+                <button id="prev-btn" disabled>⬅️ पिछला प्रश्न</button>
+                <button id="next-btn">अगला प्रश्न ➡️</button>
             </div>
         </div>
         
         <div class="result-section" id="result-section">
-            <h2 class="result-title">आपका परिणाम</h2>
-            <div class="score" id="score">आपने 7/10 प्रश्न सही किए!</div>
+            <h2 class="result-title">🎉 आपका परिणाम 🎉</h2>
+            <div class="score" id="score">आपने 0/100 प्रश्न सही किए!</div>
+            
+            <div class="performance">
+                <div class="performance-item">
+                    <div class="performance-value" id="correct-answers">0</div>
+                    <div class="performance-label">सही उत्तर</div>
+                </div>
+                <div class="performance-item">
+                    <div class="performance-value" id="wrong-answers">0</div>
+                    <div class="performance-label">गलत उत्तर</div>
+                </div>
+                <div class="performance-item">
+                    <div class="performance-value" id="percentage">0%</div>
+                    <div class="performance-label">प्रतिशत</div>
+                </div>
+                <div class="performance-item">
+                    <div class="performance-value" id="accuracy">0%</div>
+                    <div class="performance-label">शुद्धता</div>
+                </div>
+            </div>
+            
             <div class="wrong-questions" id="wrong-questions">
-                <h3>गलत उत्तर वाले प्रश्न:</h3>
+                <h3>📝 गलत उत्तर वाले प्रश्न:</h3>
                 <!-- Wrong questions will be inserted here by JavaScript -->
             </div>
             <div class="social-links">
-                <button class="social-link screenshot-btn" id="screenshot-btn">स्क्रीनशॉट लें</button>
-                <a href="#" class="social-link" id="restart-btn">फिर से प्रयास करें</a>
+                <button class="social-link screenshot-btn" id="screenshot-btn">📸 स्क्रीनशॉट लें</button>
+                <a href="#" class="social-link" id="restart-btn">🔄 फिर से प्रयास करें</a>
             </div>
         </div>
+        
+        <footer>
+            <p>Created by Anurag | हिंदी व्याकरण विशेषज्ञ</p>
+        </footer>
     </div>
 
     <script>
-        // Questions data
+        // Questions data - 100 Intermediate Level Hindi Grammar Questions
         const questions = [
+            // संधि (15 questions)
             {
-                question: "'सदाचार' शब्द में कौन-सी संधि है?",
+                question: "'अत्याधुनिक' शब्द में किस प्रकार की संधि है?",
                 options: [
                     { text: "(क) दीर्घ संधि", correct: false },
-                    { text: "(ख) व्यंजन संधि ", correct: true },
+                    { text: "(ख) गुण संधि", correct: false },
+                    { text: "(ग) यण संधि", correct: true },
+                    { text: "(घ) वृद्धि संधि", correct: false }
+                ]
+            },
+            {
+                question: "'सूर्योदय' शब्द का संधि-विच्छेद क्या है?",
+                options: [
+                    { text: "(क) सूर्य + उदय", correct: true },
+                    { text: "(ख) सूर्य + आदय", correct: false },
+                    { text: "(ग) सूर्या + उदय", correct: false },
+                    { text: "(घ) सूर्य + ओदय", correct: false }
+                ]
+            },
+            {
+                question: "'महौषध' शब्द में कौन-सी संधि है?",
+                options: [
+                    { text: "(क) गुण संधि", correct: false },
+                    { text: "(ख) वृद्धि संधि", correct: true },
+                    { text: "(ग) यण संधि", correct: false },
+                    { text: "(घ) अयादि संधि", correct: false }
+                ]
+            },
+            {
+                question: "'निरुपाय' शब्द का सही संधि-विच्छेद क्या है?",
+                options: [
+                    { text: "(क) नि: + उपाय", correct: false },
+                    { text: "(ख) निर + उपाय", correct: false },
+                    { text: "(ग) नि: + उपाय", correct: true },
+                    { text: "(घ) नीर + उपाय", correct: false }
+                ]
+            },
+            {
+                question: "'पवित्र' शब्द में किस प्रकार की संधि है?",
+                options: [
+                    { text: "(क) व्यंजन संधि", correct: true },
+                    { text: "(ख) स्वर संधि", correct: false },
+                    { text: "(ग) विसर्ग संधि", correct: false },
+                    { text: "(घ) यण संधि", correct: false }
+                ]
+            },
+            {
+                question: "'उल्लेख' शब्द का संधि-विच्छेद क्या है?",
+                options: [
+                    { text: "(क) उत् + लेख", correct: true },
+                    { text: "(ख) उद् + लेख", correct: false },
+                    { text: "(ग) उ + लेख", correct: false },
+                    { text: "(घ) उल + लेख", correct: false }
+                ]
+            },
+            {
+                question: "'चन्द्रोदय' शब्द में किस संधि का प्रयोग हुआ है?",
+                options: [
+                    { text: "(क) गुण संधि", correct: false },
+                    { text: "(ख) वृद्धि संधि", correct: false },
+                    { text: "(ग) यण संधि", correct: true },
+                    { text: "(घ) अयादि संधि", correct: false }
+                ]
+            },
+            {
+                question: "'सदैव' शब्द का सही संधि-विच्छेद क्या है?",
+                options: [
+                    { text: "(क) सदा + एव", correct: true },
+                    { text: "(ख) सद + एव", correct: false },
+                    { text: "(ग) सदा + ऐव", correct: false },
+                    { text: "(घ) सद + ऐव", correct: false }
+                ]
+            },
+            {
+                question: "'तदनुरूप' शब्द में किस प्रकार की संधि है?",
+                options: [
+                    { text: "(क) दीर्घ संधि", correct: false },
+                    { text: "(ख) गुण संधि", correct: true },
                     { text: "(ग) यण संधि", correct: false },
                     { text: "(घ) वृद्धि संधि", correct: false }
                 ]
             },
             {
-                question: "'पीताम्बर' शब्द में कौन-सा समास है?",
+                question: "'उन्नति' शब्द का संधि-विच्छेद क्या है?",
+                options: [
+                    { text: "(क) उत् + नति", correct: true },
+                    { text: "(ख) उद् + नति", correct: false },
+                    { text: "(ग) उन + नति", correct: false },
+                    { text: "(घ) उ + नति", correct: false }
+                ]
+            },
+            {
+                question: "'परमेश्वर' शब्द में किस संधि का प्रयोग हुआ है?",
+                options: [
+                    { text: "(क) गुण संधि", correct: false },
+                    { text: "(ख) वृद्धि संधि", correct: false },
+                    { text: "(ग) यण संधि", correct: false },
+                    { text: "(घ) व्यंजन संधि", correct: true }
+                ]
+            },
+            {
+                question: "'अभ्युदय' शब्द का सही संधि-विच्छेद क्या है?",
+                options: [
+                    { text: "(क) अभि + उदय", correct: true },
+                    { text: "(ख) अभ्य + उदय", correct: false },
+                    { text: "(ग) अभी + उदय", correct: false },
+                    { text: "(घ) अभि + ऊदय", correct: false }
+                ]
+            },
+            {
+                question: "'महर्षि' शब्द में किस प्रकार की संधि है?",
+                options: [
+                    { text: "(क) विसर्ग संधि", correct: true },
+                    { text: "(ख) स्वर संधि", correct: false },
+                    { text: "(ग) व्यंजन संधि", correct: false },
+                    { text: "(घ) यण संधि", correct: false }
+                ]
+            },
+            {
+                question: "'उज्ज्वल' शब्द का संधि-विच्छेद क्या है?",
+                options: [
+                    { text: "(क) उत् + ज्वल", correct: true },
+                    { text: "(ख) उद् + ज्वल", correct: false },
+                    { text: "(ग) उज + ज्वल", correct: false },
+                    { text: "(घ) उ + ज्वल", correct: false }
+                ]
+            },
+            {
+                question: "'स्वागत' शब्द में किस संधि का प्रयोग हुआ है?",
+                options: [
+                    { text: "(क) गुण संधि", correct: false },
+                    { text: "(ख) वृद्धि संधि", correct: false },
+                    { text: "(ग) यण संधि", correct: true },
+                    { text: "(घ) अयादि संधि", correct: false }
+                ]
+            },
+
+            // समास (15 questions)
+            {
+                question: "'चक्रधर' शब्द में कौन-सा समास है?",
                 options: [
                     { text: "(क) तत्पुरुष समास", correct: false },
-                    { text: "(ख) द्विगु समास", correct: false },
-                    { text: "(ग) बहुव्रीहि समास", correct: true },
+                    { text: "(ख) बहुव्रीहि समास", correct: true },
+                    { text: "(ग) द्विगु समास", correct: false },
                     { text: "(घ) कर्मधारय समास", correct: false }
                 ]
             },
             {
-                question: "'निरपराध' का सही विलोम शब्द क्या है?",
+                question: "'यथाशक्ति' शब्द में किस प्रकार का समास है?",
                 options: [
-                    { text: "(क) दोषी", correct: false },
-                    { text: "(ख) अपराधी", correct: false },
-                    { text: "(ग) सदोष", correct: false },
-                    { text: "(घ) उपरोक्त सभी", correct: true }
+                    { text: "(क) तत्पुरुष समास", correct: false },
+                    { text: "(ख) अव्ययीभाव समास", correct: true },
+                    { text: "(ग) द्विगु समास", correct: false },
+                    { text: "(घ) द्वंद्व समास", correct: false }
                 ]
             },
             {
-                question: "'इंद्र' का पर्यायवाची शब्द नहीं है:",
+                question: "'पंचवटी' शब्द का समास-विग्रह क्या है?",
                 options: [
-                    { text: "(क) सुरपति", correct: false },
-                    { text: "(ख) अमरेश", correct: false },
-                    { text: "(ग) वज्रधारी", correct: false },
-                    { text: "(घ) त्रिनेत्र", correct: true }
+                    { text: "(क) पाँच वटों का समूह", correct: true },
+                    { text: "(ख) पाँचवाँ वट", correct: false },
+                    { text: "(ग) वट की पंच", correct: false },
+                    { text: "(घ) पंच और वटी", correct: false }
                 ]
             },
             {
-                question: "निम्नलिखित में से किस वाक्य में 'सामान्य अशुद्धि' नहीं है?",
+                question: "'नीलकंठ' शब्द में कौन-सा समास है?",
                 options: [
-                    { text: "(क) मैं कल आगरा जाऊँगा।", correct: false },
-                    { text: "(ख) उसने मुझे एक फल दिया।", correct: true },
-                    { text: "(ग) श्याम का भाई आया है।", correct: false },
-                    { text: "(घ) वह पढ़ता है।", correct: false }
+                    { text: "(क) तत्पुरुष समास", correct: false },
+                    { text: "(ख) कर्मधारय समास", correct: true },
+                    { text: "(ग) बहुव्रीहि समास", correct: false },
+                    { text: "(घ) द्विगु समास", correct: false }
                 ]
             },
+            {
+                question: "'राजकुमार' शब्द का समास-विग्रह क्या है?",
+                options: [
+                    { text: "(क) राजा का कुमार", correct: true },
+                    { text: "(ख) राजा और कुमार", correct: false },
+                    { text: "(ग) राजा के लिए कुमार", correct: false },
+                    { text: "(घ) राजा से कुमार", correct: false }
+                ]
+            },
+            {
+                question: "'दशानन' शब्द में किस प्रकार का समास है?",
+                options: [
+                    { text: "(क) तत्पुरुष समास", correct: false },
+                    { text: "(ख) बहुव्रीहि समास", correct: true },
+                    { text: "(ग) द्विगु समास", correct: false },
+                    { text: "(घ) कर्मधारय समास", correct: false }
+                ]
+            },
+            {
+                question: "'आजीवन' शब्द में कौन-सा समास है?",
+                options: [
+                    { text: "(क) अव्ययीभाव समास", correct: true },
+                    { text: "(ख) तत्पुरुष समास", correct: false },
+                    { text: "(ग) द्विगु समास", correct: false },
+                    { text: "(घ) द्वंद्व समास", correct: false }
+                ]
+            },
+            {
+                question: "'ग्रामवासी' शब्द का समास-विग्रह क्या है?",
+                options: [
+                    { text: "(क) ग्राम में वासी", correct: true },
+                    { text: "(ख) ग्राम का वासी", correct: true },
+                    { text: "(ग) ग्राम और वासी", correct: false },
+                    { text: "(घ) ग्राम से वासी", correct: false }
+                ]
+            },
+            {
+                question: "'माता-पिता' शब्द में किस प्रकार का समास है?",
+                options: [
+                    { text: "(क) तत्पुरुष समास", correct: false },
+                    { text: "(ख) द्वंद्व समास", correct: true },
+                    { text: "(ग) द्विगु समास", correct: false },
+                    { text: "(घ) बहुव्रीहि समास", correct: false }
+                ]
+            },
+            {
+                question: "'यथासंभव' शब्द में कौन-सा समास है?",
+                options: [
+                    { text: "(क) अव्ययीभाव समास", correct: true },
+                    { text: "(ख) तत्पुरुष समास", correct: false },
+                    { text: "(ग) द्विगु समास", correct: false },
+                    { text: "(घ) कर्मधारय समास", correct: false }
+                ]
+            },
+            {
+                question: "'त्रिभुवन' शब्द का समास-विग्रह क्या है?",
+                options: [
+                    { text: "(क) तीन भुवन", correct: true },
+                    { text: "(ख) तीसरा भुवन", correct: false },
+                    { text: "(ग) तीनों भुवन", correct: false },
+                    { text: "(घ) तीन और भुवन", correct: false }
+                ]
+            },
+            {
+                question: "'पीताम्बर' शब्द में किस प्रकार का समास है?",
+                options: [
+                    { text: "(क) तत्पुरुष समास", correct: false },
+                    { text: "(ख) बहुव्रीहि समास", correct: true },
+                    { text: "(ग) द्विगु समास", correct: false },
+                    { text: "(घ) कर्मधारय समास", correct: false }
+                ]
+            },
+            {
+                question: "'प्रतिदिन' शब्द में कौन-सा समास है?",
+                options: [
+                    { text: "(क) अव्ययीभाव समास", correct: true },
+                    { text: "(ख) तत्पुरुष समास", correct: false },
+                    { text: "(ग) द्विगु समास", correct: false },
+                    { text: "(घ) द्वंद्व समास", correct: false }
+                ]
+            },
+            {
+                question: "'महाशय' शब्द का समास-विग्रह क्या है?",
+                options: [
+                    { text: "(क) महान आशय वाला", correct: true },
+                    { text: "(ख) महा और आशय", correct: false },
+                    { text: "(ग) महान का आशय", correct: false },
+                    { text: "(घ) महा से आशय", correct: false }
+                ]
+            },
+            {
+                question: "'सप्तर्षि' शब्द में किस प्रकार का समास है?",
+                options: [
+                    { text: "(क) तत्पुरुष समास", correct: false },
+                    { text: "(ख) द्विगु समास", correct: true },
+                    { text: "(ग) बहुव्रीहि समास", correct: false },
+                    { text: "(घ) द्वंद्व समास", correct: false }
+                ]
+            },
+
+            // विलोम शब्द (10 questions)
+            {
+                question: "'अनुकूल' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) प्रतिकूल", correct: true },
+                    { text: "(ख) अनुकूलन", correct: false },
+                    { text: "(ग) सुकूल", correct: false },
+                    { text: "(घ) कूल", correct: false }
+                ]
+            },
+            {
+                question: "'आदान' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) प्रदान", correct: true },
+                    { text: "(ख) दान", correct: false },
+                    { text: "(ग) स्वदान", correct: false },
+                    { text: "(घ) अदान", correct: false }
+                ]
+            },
+            {
+                question: "'निश्चित' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) अनिश्चित", correct: true },
+                    { text: "(ख) विनिश्चित", correct: false },
+                    { text: "(ग) निश्चय", correct: false },
+                    { text: "(घ) संशय", correct: false }
+                ]
+            },
+            {
+                question: "'लाभ' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) हानि", correct: true },
+                    { text: "(ख) नुकसान", correct: true },
+                    { text: "(ग) अलाभ", correct: false },
+                    { text: "(घ) क्षति", correct: false }
+                ]
+            },
+            {
+                question: "'सुख' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) दुख", correct: true },
+                    { text: "(ख) आनंद", correct: false },
+                    { text: "(ग) हर्ष", correct: false },
+                    { text: "(घ) पीड़ा", correct: false }
+                ]
+            },
+            {
+                question: "'उपस्थित' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) अनुपस्थित", correct: true },
+                    { text: "(ख) स्थित", correct: false },
+                    { text: "(ग) प्रस्थित", correct: false },
+                    { text: "(घ) विपस्थित", correct: false }
+                ]
+            },
+            {
+                question: "'आशा' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) निराशा", correct: true },
+                    { text: "(ख) विश्वास", correct: false },
+                    { text: "(ग) आशाहीन", correct: false },
+                    { text: "(घ) विश्वास", correct: false }
+                ]
+            },
+            {
+                question: "'सफलता' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) असफलता", correct: true },
+                    { text: "(ख) विफलता", correct: true },
+                    { text: "(ग) निसफलता", correct: false },
+                    { text: "(घ) पराजय", correct: false }
+                ]
+            },
+            {
+                question: "'प्रश्न' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) उत्तर", correct: true },
+                    { text: "(ख) जवाब", correct: false },
+                    { text: "(ग) प्रतिउत्तर", correct: false },
+                    { text: "(घ) समाधान", correct: false }
+                ]
+            },
+            {
+                question: "'सजीव' का विलोम शब्द क्या है?",
+                options: [
+                    { text: "(क) निर्जीव", correct: true },
+                    { text: "(ख) अजीव", correct: false },
+                    { text: "(ग) प्राणहीन", correct: false },
+                    { text: "(घ) मृत", correct: false }
+                ]
+            },
+
+            // पर्यायवाची शब्द (10 questions)
+            {
+                question: "'सूर्य' का पर्यायवाची शब्द क्या है?",
+                options: [
+                    { text: "(क) रवि", correct: true },
+                    { text: "(ख) चंद्र", correct: false },
+                    { text: "(ग) शशि", correct: false },
+                    { text: "(घ) तारा", correct: false }
+                ]
+            },
+            {
+                question: "'पृथ्वी' का पर्यायवाची शब्द नहीं है:",
+                options: [
+                    { text: "(क) भू", correct: false },
+                    { text: "(ख) धरा", correct: false },
+                    { text: "(ग) वसुधा", correct: false },
+                    { text: "(घ) आकाश", correct: true }
+                ]
+            },
+            {
+                question: "'जल' का पर्यायवाची शब्द क्या है?",
+                options: [
+                    { text: "(क) वारि", correct: true },
+                    { text: "(ख) अग्नि", correct: false },
+                    { text: "(ग) वायु", correct: false },
+                    { text: "(घ) पावक", correct: false }
+                ]
+            },
+            {
+                question: "'अग्नि' का पर्यायवाची शब्द नहीं है:",
+                options: [
+                    { text: "(क) पावक", correct: false },
+                    { text: "(ख) अनल", correct: false },
+                    { text: "(ग) वह्नि", correct: false },
+                    { text: "(घ) सोम", correct: true }
+                ]
+            },
+            {
+                question: "'कमल' का पर्यायवाची शब्द क्या है?",
+                options: [
+                    { text: "(क) पंकज", correct: true },
+                    { text: "(ख) शंख", correct: false },
+                    { text: "(ग) चक्र", correct: false },
+                    { text: "(घ) गदा", correct: false }
+                ]
+            },
+            {
+                question: "'हाथी' का पर्यायवाची शब्द नहीं है:",
+                options: [
+                    { text: "(क) गज", correct: false },
+                    { text: "(ख) करी", correct: false },
+                    { text: "(ग) हस्ती", correct: false },
+                    { text: "(घ) अश्व", correct: true }
+                ]
+            },
+            {
+                question: "'सिंह' का पर्यायवाची शब्द क्या है?",
+                options: [
+                    { text: "(क) केसरी", correct: true },
+                    { text: "(ख) व्याघ्र", correct: false },
+                    { text: "(ग) शार्दूल", correct: false },
+                    { text: "(घ) वानर", correct: false }
+                ]
+            },
+            {
+                question: "'सर्प' का पर्यायवाची शब्द नहीं है:",
+                options: [
+                    { text: "(क) भुजंग", correct: false },
+                    { text: "(ख) अहि", correct: false },
+                    { text: "(ग) उरग", correct: false },
+                    { text: "(घ) मृग", correct: true }
+                ]
+            },
+            {
+                question: "'चंद्रमा' का पर्यायवाची शब्द क्या है?",
+                options: [
+                    { text: "(क) शशि", correct: true },
+                    { text: "(ख) भानु", correct: false },
+                    { text: "(ग) दिनकर", correct: false },
+                    { text: "(घ) रवि", correct: false }
+                ]
+            },
+            {
+                question: "'आकाश' का पर्यायवाची शब्द क्या है?",
+                options: [
+                    { text: "(क) गगन", correct: true },
+                    { text: "(ख) पाताल", correct: false },
+                    { text: "(ग) भूमि", correct: false },
+                    { text: "(घ) धरती", correct: false }
+                ]
+            },
+
+            // अशुद्धि शोधन (10 questions)
+            {
+                question: "शुद्ध वाक्य का चयन करें:",
+                options: [
+                    { text: "(क) वह आज स्कूल नहीं गया।", correct: true },
+                    { text: "(ख) वह आज स्कूल नहीं गयी।", correct: false },
+                    { text: "(ग) वह आज स्कूल न गया।", correct: false },
+                    { text: "(घ) वह आज स्कूल नहीं जाया।", correct: false }
+                ]
+            },
+            {
+                question: "किस वाक्य में अशुद्धि है?",
+                options: [
+                    { text: "(क) मैंने उसे देखा।", correct: false },
+                    { text: "(ख) तुम कहाँ जा रहे हो?", correct: false },
+                    { text: "(ग) वह पुस्तक पढ़ रहा हैं।", correct: true },
+                    { text: "(घ) हम खेलने जाएँगे।", correct: false }
+                ]
+            },
+            {
+                question: "शुद्ध वाक्य का चयन करें:",
+                options: [
+                    { text: "(क) उसने मुझे मारा।", correct: true },
+                    { text: "(ख) उसने मुझको मारा।", correct: false },
+                    { text: "(ग) उसने मुझे मारी।", correct: false },
+                    { text: "(घ) उसने मुझको मारी।", correct: false }
+                ]
+            },
+            {
+                question: "किस वाक्य में क्रिया का सही रूप प्रयुक्त हुआ है?",
+                options: [
+                    { text: "(क) वह गाना गाती है।", correct: false },
+                    { text: "(ख) वह गाना गाता है।", correct: true },
+                    { text: "(ग) वह गाना गाते हैं।", correct: false },
+                    { text: "(घ) वह गाना गाती हैं।", correct: false }
+                ]
+            },
+            {
+                question: "शुद्ध वाक्य का चयन करें:",
+                options: [
+                    { text: "(क) मैं कल वहाँ जाऊँगा।", correct: true },
+                    { text: "(ख) मैं कल वहाँ जायेगा।", correct: false },
+                    { text: "(ग) मैं कल वहाँ जाऊँगी।", correct: false },
+                    { text: "(घ) मैं कल वहाँ जाऊंगा।", correct: false }
+                ]
+            },
+            {
+                question: "किस वाक्य में लिंग संबंधी अशुद्धि है?",
+                options: [
+                    { text: "(क) लड़का पढ़ रहा है।", correct: false },
+                    { text: "(ख) लड़की पढ़ रही है।", correct: false },
+                    { text: "(ग) लड़का पढ़ रही है।", correct: true },
+                    { text: "(घ) लड़की पढ़ रहा है।", correct: true }
+                ]
+            },
+            {
+                question: "शुद्ध वाक्य का चयन करें:",
+                options: [
+                    { text: "(क) वह बहुत अच्छा लड़का है।", correct: true },
+                    { text: "(ख) वह बहुत अच्छी लड़का है।", correct: false },
+                    { text: "(ग) वह बहुत अच्छे लड़का है।", correct: false },
+                    { text: "(घ) वह बहुत अच्छा लड़की है।", correct: false }
+                ]
+            },
+            {
+                question: "किस वाक्य में वचन संबंधी अशुद्धि है?",
+                options: [
+                    { text: "(क) लड़के खेल रहे हैं।", correct: false },
+                    { text: "(ख) लड़कियाँ पढ़ रही हैं।", correct: false },
+                    { text: "(ग) लड़का खेल रहे हैं।", correct: true },
+                    { text: "(घ) लड़की पढ़ रही है।", correct: false }
+                ]
+            },
+            {
+                question: "शुद्ध वाक्य का चयन करें:",
+                options: [
+                    { text: "(क) मैंने उसे बुलाया।", correct: true },
+                    { text: "(ख) मैंने उसको बुलाया।", correct: false },
+                    { text: "(ग) मैंने उसे बुलाई।", correct: false },
+                    { text: "(घ) मैंने उसको बुलाई।", correct: false }
+                ]
+            },
+            {
+                question: "किस वाक्य में कारक संबंधी अशुद्धि है?",
+                options: [
+                    { text: "(क) राम ने रोटी खाई।", correct: false },
+                    { text: "(ख) राम को रोटी खाई।", correct: true },
+                    { text: "(ग) राम से रोटी खाई गई।", correct: false },
+                    { text: "(घ) राम रोटी खाता है।", correct: false }
+                ]
+            },
+
+            // वाक्यांश के लिए एक शब्द (10 questions)
             {
                 question: "'जो कभी न मरता हो' - वाक्यांश के लिए एक शब्द क्या होगा?",
                 options: [
-                    { text: "(क) मृत्युंजय", correct: false },
-                    { text: "(ख) अमर", correct: false },
-                    { text: "(ग) चिरंजीव", correct: false },
+                    { text: "(क) अमर", correct: true },
+                    { text: "(ख) मृत्युंजय", correct: true },
+                    { text: "(ग) चिरंजीव", correct: true },
                     { text: "(घ) उपरोक्त सभी", correct: true }
                 ]
             },
             {
+                question: "'जो सब कुछ जानता हो' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) सर्वज्ञ", correct: true },
+                    { text: "(ख) अज्ञ", correct: false },
+                    { text: "(ग) विज्ञ", correct: false },
+                    { text: "(घ) प्रज्ञ", correct: false }
+                ]
+            },
+            {
+                question: "'जो दूसरों का भला चाहे' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) परोपकारी", correct: true },
+                    { text: "(ख) स्वार्थी", correct: false },
+                    { text: "(ग) दयालु", correct: false },
+                    { text: "(घ) कृपालु", correct: false }
+                ]
+            },
+            {
+                question: "'जिसका जन्म न हुआ हो' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) अजन्मा", correct: true },
+                    { text: "(ख) जन्मा", correct: false },
+                    { text: "(ग) पैदा", correct: false },
+                    { text: "(घ) उत्पन्न", correct: false }
+                ]
+            },
+            {
+                question: "'जो कहीं नहीं रहता' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) अनिकेत", correct: true },
+                    { text: "(ख) अजनबी", correct: false },
+                    { text: "(ग) अनजान", correct: false },
+                    { text: "(घ) अनिच्छुक", correct: false }
+                ]
+            },
+            {
+                question: "'जो क्रोध न करे' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) अक्रोधी", correct: true },
+                    { text: "(ख) क्रोधी", correct: false },
+                    { text: "(ग) शांत", correct: false },
+                    { text: "(घ) गुस्सैल", correct: false }
+                ]
+            },
+            {
+                question: "'जो सब ओर देख सके' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) सर्वदर्शी", correct: true },
+                    { text: "(ख) अंधा", correct: false },
+                    { text: "(ग) एकदर्शी", correct: false },
+                    { text: "(घ) दूरदर्शी", correct: false }
+                ]
+            },
+            {
+                question: "'जिसे जीता न जा सके' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) अजेय", correct: true },
+                    { text: "(ख) पराजित", correct: false },
+                    { text: "(ग) विजेता", correct: false },
+                    { text: "(घ) योद्धा", correct: false }
+                ]
+            },
+            {
+                question: "'जो बोला न जा सके' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) अकथनीय", correct: true },
+                    { text: "(ख) अवर्णनीय", correct: false },
+                    { text: "(ग) अनकहा", correct: false },
+                    { text: "(घ) अभिव्यक्त", correct: false }
+                ]
+            },
+            {
+                question: "'जिसका कोई अंत न हो' के लिए एक शब्द क्या है?",
+                options: [
+                    { text: "(क) अनंत", correct: true },
+                    { text: "(ख) सीमित", correct: false },
+                    { text: "(ग) परिमित", correct: false },
+                    { text: "(घ) निश्चित", correct: false }
+                ]
+            },
+
+            // मुहावरे (10 questions)
+            {
                 question: "'आग में घी डालना' मुहावरे का सही अर्थ क्या है?",
                 options: [
-                    { text: "(क) आग बुझाना", correct: false },
-                    { text: "(ख) क्रोध बढ़ाना", correct: true },
+                    { text: "(क) क्रोध बढ़ाना", correct: true },
+                    { text: "(ख) आग बुझाना", correct: false },
                     { text: "(ग) खाना बनाना", correct: false },
                     { text: "(घ) बलिदान देना", correct: false }
                 ]
             },
             {
-                question: "'नाचना' किस लोकोक्ति से संबंधित है?",
+                question: "'अपना उल्लू सीधा करना' मुहावरे का अर्थ क्या है?",
                 options: [
-                    { text: "(क) जैसी करनी वैसी भरनी", correct: false },
-                    { text: "(ख) अंधों में काना राजा", correct: false },
-                    { text: "(ग) नाच न जाने आँगन टेढ़ा", correct: true },
-                    { text: "(घ) नौ नचोड़े तेरह चोदे", correct: false }
+                    { text: "(क) अपना स्वार्थ सिद्ध करना", correct: true },
+                    { text: "(ख) पक्षी पालना", correct: false },
+                    { text: "(ग) सीधा बनना", correct: false },
+                    { text: "(घ) ईमानदार बनना", correct: false }
                 ]
             },
+            {
+                question: "'ऊँट के मुँह में जीरा' मुहावरे का अर्थ क्या है?",
+                options: [
+                    { text: "(क) बहुत कम मात्रा", correct: true },
+                    { text: "(ख) ऊँट का खाना", correct: false },
+                    { text: "(ग) मसाला", correct: false },
+                    { text: "(घ) बड़ी चीज", correct: false }
+                ]
+            },
+            {
+                question: "'कान भरना' मुहावरे का अर्थ क्या है?",
+                options: [
+                    { text: "(क) चुगली करना", correct: true },
+                    { text: "(ख) कान साफ करना", correct: false },
+                    { text: "(ग) कान में दवा डालना", correct: false },
+                    { text: "(घ) सुनना", correct: false }
+                ]
+            },
+            {
+                question: "'गुदड़ी का लाल' मुहावरे का अर्थ क्या है?",
+                options: [
+                    { text: "(क) गुप्त रूप से उत्पन्न प्रतिभाशाली", correct: true },
+                    { text: "(ख) गरीब का बेटा", correct: false },
+                    { text: "(ग) लाल कपड़ा", correct: false },
+                    { text: "(घ) छोटा बच्चा", correct: false }
+                ]
+            },
+            {
+                question: "'दाल में काला होना' मुहावरे का अर्थ क्या है?",
+                options: [
+                    { text: "(क) कुछ गड़बड़ होना", correct: true },
+                    { text: "(ख) दाल खराब होना", correct: false },
+                    { text: "(ग) दाल पकाना", correct: false },
+                    { text: "(घ) काली दाल", correct: false }
+                ]
+            },
+            {
+                question: "'नौ दो ग्यारह होना' मुहावरे का अर्थ क्या है?",
+                options: [
+                    { text: "(क) भाग जाना", correct: true },
+                    { text: "(ख) गणित करना", correct: false },
+                    { text: "(ग) जोड़ना", correct: false },
+                    { text: "(घ) उलझन में पड़ना", correct: false }
+                ]
+            },
+            {
+                question: "'पानी-पानी होना' मुहावरे का अर्थ क्या है?",
+                options: [
+                    { text: "(क) बहुत शर्मिंदा होना", correct: true },
+                    { text: "(ख) गीला होना", correct: false },
+                    { text: "(ग) तैरना", correct: false },
+                    { text: "(घ) प्यास लगना", correct: false }
+                ]
+            },
+            {
+                question: "'लोहे के चने चबाना' मुहावरे का अर्थ क्या है?",
+                options: [
+                    { text: "(क) बहुत कठिन काम करना", correct: true },
+                    { text: "(ख) चने खाना", correct: false },
+                    { text: "(ग) लोहा खाना", correct: false },
+                    { text: "(घ) मजबूत बनना", correct: false }
+                ]
+            },
+            {
+                question: "'हाथ मलना' मुहावरे का अर्थ क्या है?",
+                options: [
+                    { text: "(क) पछताना", correct: true },
+                    { text: "(ख) हाथ धोना", correct: false },
+                    { text: "(ग) मालिश करना", correct: false },
+                    { text: "(घ) काम करना", correct: false }
+                ]
+            },
+
+            // लोकोक्तियाँ (5 questions)
+            {
+                question: "'नाच न जाने आँगन टेढ़ा' लोकोक्ति का अर्थ क्या है?",
+                options: [
+                    { text: "(क) अपनी कमी को दूसरे पर थोपना", correct: true },
+                    { text: "(ख) नाचना सीखना", correct: false },
+                    { text: "(ग) आँगन का टेढ़ा होना", correct: false },
+                    { text: "(घ) नाच का अभ्यास", correct: false }
+                ]
+            },
+            {
+                question: "'अपनी-अपनी डफली अपना-अपना राग' लोकोक्ति का अर्थ क्या है?",
+                options: [
+                    { text: "(क) सब अपनी-अपनी बात पर अड़े रहते हैं", correct: true },
+                    { text: "(ख) सब मिलकर गाते हैं", correct: false },
+                    { text: "(ग) संगीत का कार्यक्रम", correct: false },
+                    { text: "(घ) वाद्ययंत्र बजाना", correct: false }
+                ]
+            },
+            {
+                question: "'ऊँची दुकान फीका पकवान' लोकोक्ति का अर्थ क्या है?",
+                options: [
+                    { text: "(क) दिखावटी महत्व", correct: true },
+                    { text: "(ख) अच्छा खाना", correct: false },
+                    { text: "(ग) ऊँची इमारत", correct: false },
+                    { text: "(घ) बड़ी दुकान", correct: false }
+                ]
+            },
+            {
+                question: "'दूर के ढोल सुहावने लगते हैं' लोकोक्ति का अर्थ क्या है?",
+                options: [
+                    { text: "(क) दूर की चीजें अच्छी लगती हैं", correct: true },
+                    { text: "(ख) ढोल बजाना", correct: false },
+                    { text: "(ग) संगीत सुनना", correct: false },
+                    { text: "(घ) दूर जाना", correct: false }
+                ]
+            },
+            {
+                question: "'भैंस के आगे बीन बजाना' लोकोक्ति का अर्थ क्या है?",
+                options: [
+                    { text: "(क) बेवकूफ को समझाना", correct: true },
+                    { text: "(ख) भैंस को बीन बजाना", correct: false },
+                    { text: "(ग) संगीत सुनाना", correct: false },
+                    { text: "(घ) पशु पालन", correct: false }
+                ]
+            },
+
+            // अपठित गद्यांश (5 questions)
             {
                 question: "अपठित गद्यांश में 'अन्वय' से क्या तात्पर्य है?",
                 options: [
-                    { text: "(क) गद्यांश का सारांश", correct: false },
-                    { text: "(ख) गद्यांश का शीर्षक", correct: false },
-                    { text: "(ग) गद्यांश की व्याख्या", correct: false },
-                    { text: "(घ) वाक्यों का क्रमबद्ध अर्थ", correct: true }
+                    { text: "(क) वाक्यों का क्रमबद्ध अर्थ", correct: true },
+                    { text: "(ख) गद्यांश का सारांश", correct: false },
+                    { text: "(ग) गद्यांश का शीर्षक", correct: false },
+                    { text: "(घ) गद्यांश की व्याख्या", correct: false }
                 ]
             },
             {
-                question: "'अनुरूप' शब्द का सही संधि-विच्छेद क्या है?",
+                question: "अपठित गद्यांश के प्रश्नों को हल करते समय सबसे पहले क्या करना चाहिए?",
                 options: [
-                    { text: "(क) अनु + रूप", correct: true },
-                    { text: "(ख) अनुर + उप", correct: false },
-                    { text: "(ग) अनु + उप", correct: false },
-                    { text: "(घ) अन + उरूप", correct: false }
+                    { text: "(क) गद्यांश को ध्यान से पढ़ना", correct: true },
+                    { text: "(ख) प्रश्न पढ़ना", correct: false },
+                    { text: "(ग) उत्तर लिखना", correct: false },
+                    { text: "(घ) शीर्षक देना", correct: false }
+                ]
+            },
+            {
+                question: "अपठित गद्यांश के आधार पर प्रश्नों के उत्तर देते समय क्या महत्वपूर्ण है?",
+                options: [
+                    { text: "(क) गद्यांश से ही उत्तर ढूँढना", correct: true },
+                    { text: "(ख) अपनी कल्पना का प्रयोग करना", correct: false },
+                    { text: "(ग) दूसरों से पूछना", correct: false },
+                    { text: "(घ) अनुमान लगाना", correct: false }
+                ]
+            },
+            {
+                question: "अपठित गद्यांश का उद्देश्य क्या है?",
+                options: [
+                    { text: "(क) छात्रों की समझ क्षमता का परीक्षण", correct: true },
+                    { text: "(ख) याद करने की क्षमता का परीक्षण", correct: false },
+                    { text: "(ग) लेखन क्षमता का परीक्षण", correct: false },
+                    { text: "(घ) वाक्य रचना का परीक्षण", correct: false }
+                ]
+            },
+            {
+                question: "अपठित गद्यांश के प्रश्नों में 'प्रसंग' से क्या अभिप्राय है?",
+                options: [
+                    { text: "(क) गद्यांश का संदर्भ", correct: true },
+                    { text: "(ख) गद्यांश का विषय", correct: false },
+                    { text: "(ग) गद्यांश का शीर्षक", correct: false },
+                    { text: "(घ) गद्यांश का लेखक", correct: false }
+                ]
+            },
+
+            // वाच्य (5 questions)
+            {
+                question: "'बच्चे द्वारा पुस्तक पढ़ी जा रही है' - इस वाक्य में कौन-सा वाच्य है?",
+                options: [
+                    { text: "(क) कर्मवाच्य", correct: true },
+                    { text: "(ख) कर्तृवाच्य", correct: false },
+                    { text: "(ग) भाववाच्य", correct: false },
+                    { text: "(घ) क्रियावाच्य", correct: false }
+                ]
+            },
+            {
+                question: "'मैं पढ़ता हूँ' - इस वाक्य में कौन-सा वाच्य है?",
+                options: [
+                    { text: "(क) कर्तृवाच्य", correct: true },
+                    { text: "(ख) कर्मवाच्य", correct: false },
+                    { text: "(ग) भाववाच्य", correct: false },
+                    { text: "(घ) विधिवाच्य", correct: false }
+                ]
+            },
+            {
+                question: "'मुझसे चला नहीं जाता' - इस वाक्य में कौन-सा वाच्य है?",
+                options: [
+                    { text: "(क) भाववाच्य", correct: true },
+                    { text: "(ख) कर्तृवाच्य", correct: false },
+                    { text: "(ग) कर्मवाच्य", correct: false },
+                    { text: "(घ) करणवाच्य", correct: false }
+                ]
+            },
+            {
+                question: "कर्मवाच्य के वाक्यों में क्या प्रमुख होता है?",
+                options: [
+                    { text: "(क) कर्म", correct: true },
+                    { text: "(ख) कर्ता", correct: false },
+                    { text: "(ग) क्रिया", correct: false },
+                    { text: "(घ) विशेषण", correct: false }
+                ]
+            },
+            {
+                question: "'वह पुस्तक पढ़ता है' - इस वाक्य को कर्मवाच्य में बदलें।",
+                options: [
+                    { text: "(क) उससे पुस्तक पढ़ी जाती है।", correct: true },
+                    { text: "(ख) वह पुस्तक पढ़ी जाता है।", correct: false },
+                    { text: "(ग) पुस्तक उससे पढ़ी जाती है।", correct: true },
+                    { text: "(घ) पुस्तक पढ़ता है वह।", correct: false }
                 ]
             }
         ];
@@ -458,6 +1485,12 @@
         const timerElement = document.getElementById('timer');
         const screenshotBtn = document.getElementById('screenshot-btn');
         const restartBtn = document.getElementById('restart-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const correctAnswersElement = document.getElementById('correct-answers');
+        const wrongAnswersElement = document.getElementById('wrong-answers');
+        const percentageElement = document.getElementById('percentage');
+        const accuracyElement = document.getElementById('accuracy');
 
         // Quiz state
         let currentQuestion = 0;
@@ -477,6 +1510,10 @@
             const question = questions[currentQuestion];
             questionNumber.textContent = `प्रश्न ${currentQuestion + 1}/${questions.length}`;
             questionText.textContent = question.question;
+            
+            // Update progress
+            progressBar.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+            progressText.textContent = `प्रश्न ${currentQuestion + 1} का ${questions.length}`;
             
             optionsContainer.innerHTML = '';
             question.options.forEach((option, index) => {
@@ -501,7 +1538,7 @@
             
             // Update navigation buttons
             prevBtn.disabled = currentQuestion === 0;
-            nextBtn.textContent = currentQuestion === questions.length - 1 ? 'परिणाम देखें' : 'अगला प्रश्न';
+            nextBtn.textContent = currentQuestion === questions.length - 1 ? 'परिणाम देखें' : 'अगला प्रश्न ➡️';
             
             // Reset timer for new question
             resetTimer();
@@ -599,25 +1636,35 @@
             // Calculate score
             score = 0;
             const wrongQuestions = [];
+            let answeredQuestions = 0;
             
             userAnswers.forEach((answer, index) => {
-                if (answer !== null && questions[index].options[answer].correct) {
-                    score++;
-                } else {
-                    wrongQuestions.push({
-                        question: questions[index].question,
-                        userAnswer: answer !== null ? questions[index].options[answer].text : 'कोई उत्तर नहीं',
-                        correctAnswer: questions[index].options.find(option => option.correct).text
-                    });
+                if (answer !== null) {
+                    answeredQuestions++;
+                    if (questions[index].options[answer].correct) {
+                        score++;
+                    } else {
+                        wrongQuestions.push({
+                            question: questions[index].question,
+                            userAnswer: questions[index].options[answer].text,
+                            correctAnswer: questions[index].options.find(option => option.correct).text
+                        });
+                    }
                 }
             });
             
             // Display score
             scoreElement.textContent = `आपने ${score}/${questions.length} प्रश्न सही किए!`;
             
+            // Update performance metrics
+            correctAnswersElement.textContent = score;
+            wrongAnswersElement.textContent = wrongQuestions.length;
+            percentageElement.textContent = `${Math.round((score / questions.length) * 100)}%`;
+            accuracyElement.textContent = answeredQuestions > 0 ? `${Math.round((score / answeredQuestions) * 100)}%` : '0%';
+            
             // Display wrong questions
             if (wrongQuestions.length > 0) {
-                wrongQuestionsContainer.innerHTML = '<h3>गलत उत्तर वाले प्रश्न:</h3>';
+                wrongQuestionsContainer.innerHTML = '<h3>📝 गलत उत्तर वाले प्रश्न:</h3>';
                 wrongQuestions.forEach((item, index) => {
                     const wrongQuestionElement = document.createElement('div');
                     wrongQuestionElement.classList.add('wrong-question');
@@ -629,7 +1676,7 @@
                     wrongQuestionsContainer.appendChild(wrongQuestionElement);
                 });
             } else {
-                wrongQuestionsContainer.innerHTML = '<p>आपने सभी प्रश्न सही किए! बधाई हो! 🎉</p>';
+                wrongQuestionsContainer.innerHTML = '<p>🎉 आपने सभी प्रश्न सही किए! बधाई हो! 🎉</p>';
             }
         }
 
